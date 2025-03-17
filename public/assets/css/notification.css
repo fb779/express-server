@@ -1,0 +1,32 @@
+main{
+    height: 100%;
+    display: grid;
+    place-content: center;
+    /* gap: 1rem; */
+    
+}
+
+section{
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+}
+
+.status{
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    
+    
+}
+
+
+.on{
+    background-color: green;
+}
+
+.off{
+    background-color: red;
+}

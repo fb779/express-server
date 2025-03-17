@@ -5,6 +5,7 @@ main {
     display: grid;
     height: 100%;
     grid-template-areas:
+        'header header'
         'tk-1 tk-2'
         'tk-1 tk-3'
         'tk-1 tk-4';
@@ -33,6 +34,14 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.header{
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: solid red 1px; */
 }
 
 .ticket-1 {

@@ -1,5 +1,6 @@
 const ticket_sk = io('/tickets');
 
+const lblTickets = document.querySelector('#lblTickets');
 const lblTicket1 = document.querySelector('#lblTicket1');
 const lblEscritorio1 = document.querySelector('#lblEscritorio1');
 const lblTicket2 = document.querySelector('#lblTicket2');
@@ -16,6 +17,17 @@ const lblEscritorio4 = document.querySelector('#lblEscritorio4');
 // ticket_sk.on('disconnect', () => {
 //     console.log(`desconectado del servidor de tickets`);
 // });
+
+ticket_sk.on('total-ticket', (payload) => {
+    console.log(`Cantidad de tickets pendientes - ${payload}`);
+    let text = payload;
+
+    if (!isNaN(payload)) {
+        text = `Tickets pendientes: ${payload}.`;
+    }
+
+    lblTickets.innerHTML = text;
+});
 
 ticket_sk.on('last-four', (payload) => {
     const [tk1, tk2, tk3, tk4] = payload;

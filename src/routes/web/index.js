@@ -33,4 +33,6 @@ router.use('/web-chat', require('../../web/chat/chat.routes'));
 
 router.use('/ticket', require('../../web/tickets/ticket.routes'));
 
+router.use('/notification', require('../../web/notification/notification.router'));
+
 module.exports = router;

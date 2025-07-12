@@ -1,7 +1,7 @@
 const {TicketSocketController} = require('./tickets/ticket.socket');
 const {ChatSocketController} = require('./chat/chat.socket');
 const {NotificationSocketController} = require('./notification/notification.socket');
-// const Notifier = require('../class/notifications');
+const {validSoketJWT} = require('../middleware/validatedSocketJwt');
 
 const GenericControllerSk = (io) => {
     // const generic = io.of('/');
@@ -36,6 +36,7 @@ const ChatControllerSk = (io) => {
 
 const NotificationControllerSk = (io) => {
     const notificationSK = io.of('/notification');
+    // notificationSK.use(validSoketJWT);
     notificationSK.on('connection', (socket) => NotificationSocketController(socket, notificationSK));
 };
 

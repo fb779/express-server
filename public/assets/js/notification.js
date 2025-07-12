@@ -17,15 +17,19 @@ const connectSocket = () => {
 
     socket.on('connect', () => {
         console.log(`conectado al servidor`);
+        statusElement.classList.remove('off');
         statusElement.classList.add('on');
+        statusElement.innerHTML = 'on';
     });
 
-    socket.on('disconnect', () => {
-        console.log(`desconectado del servidor`);
+    socket.on('disconnect', (reason) => {
+        console.log(`desconectado del servidor, ${reason}`);
+        statusElement.innerHTML = 'off';
+        statusElement.classList.remove('on');
         statusElement.classList.add('off');
     });
 
-    socket.on('notification', drawNotification);
+    socket.on('send-notification', drawNotification);
 
     // socket.on('chat-list-messages', drawMessages);
 
@@ -46,7 +50,10 @@ const connectSocket = () => {
         // const input = document.getElementByName('message');
         console.log(`valor del input: ${sendInput.value ?? sendInput.value}`);
         const payload = {message: sendInput.value ?? sendInput.value};
-        socket.emit('send-notification', payload);
+        socket.emit('send-notification', payload, (dt) => {
+            console.log(`llegada del cb`, dt);
+            drawNotification(dt.message);
+        });
     };
 
     disconnectBtn.onclick = (ev) => {
